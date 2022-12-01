@@ -5,7 +5,7 @@ import android.util.Log
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.lifecycleScope
-import com.unoapp.demo.apis.ApiInterface
+import com.unoapp.demo.apis.ApiHelper
 import com.unoapp.demo.apis.RetrofitClient
 
 class MainActivity : AppCompatActivity() {
@@ -17,14 +17,12 @@ class MainActivity : AppCompatActivity() {
 
     fun getUserList() {
         var retrofit = RetrofitClient.getInstance()
-        var apiInterface = retrofit.create(ApiInterface::class.java)
+        var apiInterface = retrofit.create(ApiHelper::class.java)
         lifecycleScope.launchWhenCreated {
             try {
                 val response = apiInterface.getAllUsers()
-                if (response.isSuccessful()) {
+                if (response.isSuccessful) {
                     //your code for handaling success response
-
-
                 } else {
                     Toast.makeText(
                         this@MainActivity,
